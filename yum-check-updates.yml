@@ -1,0 +1,23 @@
+---
+########################################################################
+# This Playbook requires python version 2.7 and Jinja2 Module to run.  #
+# Author: Valance Hale                                                 #
+# Version: 20191219                                                    #
+########################################################################
+- name: Check the Available Updates in Servers and list them
+  hosts: cpanel
+  gather_facts: false
+
+  tasks:
+
+  - name: Using YUM Package Manager to check the available Packages with cache updated.
+    yum: list=updates update_cache=true
+    register: output
+
+  - name: Assign Output to Variable One
+    set_fact:
+      package_name: "{{ output.results | map(attribute='name') | list }}"
+
+  - name: Display Message
+    debug: var=package_name
+    when: package_name.stdout_lines is defined
