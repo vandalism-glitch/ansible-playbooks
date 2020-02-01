@@ -1,0 +1,32 @@
+---
+########################################################################
+# Playbook to disable ClamD on all 4G Servers.                         #
+# Author: Valance Hale                                                 #
+# Version: 20200101                                                    #
+########################################################################
+
+- name: Disable clamd in 4GB Servers
+  hosts: cpanel
+  gather_facts: true
+  vars:
+    dosrvmng: "/scripts/dosrvmng?clamd=0"
+
+  tasks:
+
+  - name: Get Memory
+    debug: #var=ansible_memtotal_mb
+      msg: "Memory less than 4GB; Proceeding to Disable CLAMD"
+    when: ansible_memtotal_mb < 4097
+ 
+  - name: Creating clamddisable file
+    file:
+      path: /etc/clamddisable
+      state: touch
+      mode: u=rw,g=r,o=r
+    when: ansible_memtotal_mb < 4097
+
+  - name: Restarting Exim Service
+    service:
+      name: exim
+      state: restarted
+    when: ansible_memtotal_mb < 4097
