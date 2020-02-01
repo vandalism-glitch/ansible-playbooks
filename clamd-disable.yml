@@ -8,8 +8,6 @@
 - name: Disable clamd in 4GB Servers
   hosts: cpanel
   gather_facts: true
-  vars:
-    dosrvmng: "/scripts/dosrvmng?clamd=0"
 
   tasks:
 
