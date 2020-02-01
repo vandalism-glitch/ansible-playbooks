@@ -12,7 +12,7 @@
   tasks:
 
   - name: Get Memory
-    debug: #var=ansible_memtotal_mb
+    debug: 
       msg: "Memory less than 4GB; Proceeding to Disable CLAMD"
     when: ansible_memtotal_mb < 4097
  
