@@ -1,9 +1,11 @@
 ---
-########################################################################
-# This Playbook requires python version 2.7 and Jinja2 Module to run.  #
-# Author: Valance Hale                                                 #
-# Version: 20191219                                                    #
-########################################################################
+
+# This Playbook requires python version 2.7 and Jinja2 Module to run;
+# The Playbook lists out all the updateable packages  in the server where YUM is available.;
+# Since the output is a `dict` (A python Data Structure), the variables are mapped out using attribute function in Jinja2;
+# Author: Valance Hale;
+# Version: 20191219;
+
 - name: Check the Available Updates in Servers and list them
   hosts: cpanel
   gather_facts: false
