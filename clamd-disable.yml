@@ -1,12 +1,4 @@
 ---
-########################################################################
-# Playbook to disable ClamD on all 4G Servers;
-# This playbook runs is designed to run on ansible version 2.7^;
-# The script checks for the memory availability in the server and runs the task to disable CLAMD service;
-# Since clamd runs under Exim, the service is also restarted. 
-# Author: Vaishnav Harikumar
-# Version: 20200101
-########################################################################
 
 - name: Disable clamd in 4GB Servers
   hosts: <host_group>
