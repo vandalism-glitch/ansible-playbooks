@@ -7,7 +7,7 @@
 # Version: 20191219;
 
 - name: Check the Available Updates in Servers and list them
-  hosts: cpanel
+  hosts: <host-group>
   gather_facts: false
 
   tasks:
